@@ -19,8 +19,8 @@ server {
 	server_name 127.0.0.1;
 
 	# Uncomment when using Telize behind a load balancer
-	# set_real_ip_from 10.0.0.0/8; # Put your load balancer IP range here
-	# real_ip_header X-Forwarded-For;
+	set_real_ip_from 10.0.0.0/8; # Put your load balancer IP range here
+	real_ip_header X-Forwarded-For;
 
 	charset_types application/json;
 
@@ -62,9 +62,9 @@ server {
 		}
 
 		# Uncomment when using Telize behind a load balancer, and comment the directive setting X-Real-IP
-		# proxy_set_header X-Forwarded-For $ip;
+		proxy_set_header X-Forwarded-For $ip;
 
-		proxy_set_header X-Real-IP $ip;
+		# proxy_set_header X-Real-IP $ip;
 		proxy_set_header Host $host;
 		proxy_pass $scheme://127.0.0.1/jsonify?callback=$arg_callback;
 	}
